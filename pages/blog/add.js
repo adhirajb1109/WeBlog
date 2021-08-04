@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import fire from "../config/firebaseConfig";
+import fire from "../../config/firebaseConfig";
+import { useRouter } from "next/router";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [notification, setNotification] = useState("");
+  const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -11,15 +12,12 @@ const CreatePost = () => {
       title: title,
       content: content,
     });
-    setNotification("Blogpost created");
-    setTimeout(() => {
-      setNotification("");
-    }, 2000);
     setTitle("");
     setContent("");
+    router.push("/");
   };
   return (
-    <div>
+    <div className="container">
       <h2 className="mt-3">Add Blog</h2>
       {notification}
       <form onSubmit={handleSubmit}>

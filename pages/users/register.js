@@ -7,14 +7,9 @@ const Register = () => {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passConf, setPassConf] = useState("");
-  const [notification, setNotification] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
     if (password !== passConf) {
-      setNotification("Password and password confirmation does not match");
-      setTimeout(() => {
-        setNotification("");
-      }, 2000);
       setPassword("");
       setPassConf("");
       return null;

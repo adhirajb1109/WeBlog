@@ -19,7 +19,9 @@ export default function Navbar() {
     <div className="mb-3">
       <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div className="container-fluid">
-          <a className="navbar-brand">WeBlog</a>
+          <Link href="/">
+            <a className="navbar-brand">WeBlog</a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -52,11 +54,22 @@ export default function Navbar() {
                   </li>
                 </>
               ) : (
-                <li className="nav-item">
-                  <a onClick={handleLogout} className="nav-link active">
-                    Logout
-                  </a>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <Link href="/blog/add">
+                      <a className="nav-link active">Add Post</a>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      onClick={handleLogout}
+                      href="#"
+                      className="nav-link active"
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </>
               )}
             </ul>
           </div>

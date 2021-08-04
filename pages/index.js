@@ -1,12 +1,10 @@
 import Head from "next/head";
-import CreatePost from "../components/createPost";
 import fire from "../config/firebaseConfig";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [notification, setNotification] = useState("");
   const user = fire.auth().currentUser;
   fire.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -16,15 +14,7 @@ export default function Home() {
     }
   });
   const handleLogout = () => {
-    fire
-      .auth()
-      .signOut()
-      .then(() => {
-        setNotification("Logged out");
-        setTimeout(() => {
-          setNotification("");
-        }, 2000);
-      });
+    fire.auth().signOut();
   };
   useEffect(() => {
     fire
@@ -53,7 +43,6 @@ export default function Home() {
           </li>
         ))}
       </ul>
-      {loggedIn && <CreatePost />}
     </div>
   );
 }
