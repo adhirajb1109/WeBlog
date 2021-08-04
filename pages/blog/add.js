@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import fire from "../../config/firebaseConfig";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
-  const user = fire.auth().currentUser;
   fire.auth().onAuthStateChanged((user) => {
     if (user) {
       setLoggedIn(true);
@@ -13,9 +14,11 @@ const CreatePost = () => {
       setLoggedIn(false);
     }
   });
-  if (!user) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (!loggedIn) {
+      router.push("/");
+    }
+  });
   const handleSubmit = (event) => {
     event.preventDefault();
     fire.firestore().collection("blogs").add({
