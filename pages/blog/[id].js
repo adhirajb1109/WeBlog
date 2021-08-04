@@ -13,9 +13,9 @@ function Blog(props) {
           <h5 className="card-text lh-lg">{props.content}</h5>
         </div>
       </div>
-      <a href="/" className="btn btn-dark mb-3">
-        <a>Back</a>
-      </a>
+      <Link href="/">
+        <a className="btn btn-dark mb-3">Back</a>
+      </Link>
     </div>
   );
 }

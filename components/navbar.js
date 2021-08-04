@@ -1,6 +1,7 @@
 import React from "react";
 import fire from "../config/firebaseConfig";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const user = fire.auth().currentUser;
@@ -33,28 +34,28 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
-                </a>
+                <Link aria-current="page" href="/">
+                  <a className="nav-link active">Home</a>
+                </Link>
               </li>
               {!user ? (
                 <>
                   <li className="nav-item">
-                    <a className="nav-link active" href="/users/register">
-                      Register
-                    </a>
+                    <Link href="/users/register">
+                      <a className="nav-link active">Register</a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link active" href="/users/login">
-                      Login
-                    </a>
+                    <Link href="/users/login">
+                      <a className="nav-link active">Login</a>
+                    </Link>
                   </li>
                 </>
               ) : (
                 <li className="nav-item">
-                  <span onClick={handleLogout} className="nav-link active">
+                  <a onClick={handleLogout} className="nav-link active">
                     Logout
-                  </span>
+                  </a>
                 </li>
               )}
             </ul>
