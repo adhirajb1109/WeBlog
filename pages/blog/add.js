@@ -5,6 +5,17 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const router = useRouter();
+  const user = fire.auth().currentUser;
+  fire.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  });
+  if (!user) {
+    router.push("/");
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     fire.firestore().collection("blogs").add({
