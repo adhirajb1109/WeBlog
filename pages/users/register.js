@@ -1,6 +1,5 @@
 import { useState } from "react";
 import fire from "../../config/firebaseConfig";
-import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Head from "next/head";
 const Register = () => {
@@ -24,38 +23,38 @@ const Register = () => {
     router.push("/");
   };
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>WeBlog | Register</title>
       </Head>
-      <h1>Create new user</h1>
+      <h1>Register</h1>
       {notification}
       <form onSubmit={handleLogin}>
-        Email :
-        <br />
+        <p className="form-label">Email :</p>
         <input
           type="text"
           value={userName}
           onChange={({ target }) => setUsername(target.value)}
+          className="form-control my-2"
         />
-        <br />
-        Password :
-        <br />
+        <p className="form-label">Password :</p>
         <input
           type="password"
           value={password}
           onChange={({ target }) => setPassword(target.value)}
+          className="form-control my-2"
         />
-        <br />
-        Confirm Password :
-        <br />
+        <p className="form-label">Confirm Password :</p>
         <input
           type="password"
           value={passConf}
           onChange={({ target }) => setPassConf(target.value)}
+          className="form-control my-2"
         />
         <br />
-        <button type="submit">Register</button>
+        <button type="submit" className="btn btn-dark">
+          Register
+        </button>
       </form>
     </div>
   );

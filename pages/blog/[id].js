@@ -1,18 +1,21 @@
 import fire from "../../config/firebaseConfig";
-import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 import Head from "next/head";
 function Blog(props) {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>WeBlog | {props.title}</title>
       </Head>
-      <h2>{props.title}</h2>
-      <p>{props.content}</p>
-      <Link href="/">
+      <h1 className="mb-3">{props.title}</h1>
+      <div className="card mb-3">
+        <div className="card-body">
+          <h5 className="card-text lh-lg">{props.content}</h5>
+        </div>
+      </div>
+      <a href="/" className="btn btn-dark mb-3">
         <a>Back</a>
-      </Link>
+      </a>
     </div>
   );
 }

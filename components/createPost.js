@@ -20,27 +20,29 @@ const CreatePost = () => {
   };
   return (
     <div>
-      <h2>Add Blog</h2>
+      <h2 className="mt-3">Add Blog</h2>
       {notification}
       <form onSubmit={handleSubmit}>
         <div>
-          Title :
-          <br />
+          <p className="form-label">Title :</p>
           <input
             type="text"
             value={title}
             onChange={({ target }) => setTitle(target.value)}
+            className="form-control my-2"
           />
         </div>
         <div>
-          Content :
-          <br />
+          <p className="form-label">Content :</p>
           <textarea
             value={content}
             onChange={({ target }) => setContent(target.value)}
+            className="form-control"
           />
         </div>
-        <button type="submit">Save</button>
+        <button type="submit" className="btn btn-dark my-3">
+          Save
+        </button>
       </form>
     </div>
   );

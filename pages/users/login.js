@@ -1,7 +1,6 @@
 import { useState } from "react";
 import fire from "../../config/firebaseConfig";
 import { useRouter } from "next/router";
-import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -25,30 +24,31 @@ const Login = () => {
     router.push("/");
   };
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>WeBlog | Login</title>
       </Head>
       <h1>Login</h1>
       {notify}
       <form onSubmit={handleLogin}>
-        Email :
-        <br />
+        <p className="form-label">Email :</p>
         <input
           type="text"
           value={username}
           onChange={({ target }) => setUsername(target.value)}
+          className="form-control mb-2"
         />
-        <br />
-        Password :
-        <br />
+        <p className="form-label">Password :</p>
         <input
           type="password"
           value={password}
           onChange={({ target }) => setPassword(target.value)}
+          className="form-control"
         />
         <br />
-        <button type="submit">Login</button>
+        <button type="submit" className="btn btn-dark ">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import CreatePost from "../components/createPost";
 import fire from "../config/firebaseConfig";
 import { useEffect, useState } from "react";
@@ -40,29 +39,16 @@ export default function Home() {
       });
   }, []);
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>WeBlog | Home</title>
       </Head>
-      <h1>Blog</h1>
-      {!user ? (
-        <div>
-          <Link href="/users/register">
-            <a>Register</a>
-          </Link>{" "}
-          |
-          <Link href="/users/login">
-            <a> Login</a>
-          </Link>
-        </div>
-      ) : (
-        <button onClick={handleLogout}>Logout</button>
-      )}
-      <ul>
+      <h1>Feed</h1>
+      <ul className="list-group mt-3">
         {blogs.map((blog) => (
-          <li key={blog.id}>
+          <li key={blog.id} className="list-group-item">
             <Link href="/blog/[id]" as={"/blog/" + blog.id}>
-              <a>{blog.title}</a>
+              <a className="text-decoration-none text-dark">{blog.title}</a>
             </Link>
           </li>
         ))}
