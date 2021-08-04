@@ -19,7 +19,6 @@ const Login = () => {
         <title>WeBlog | Login</title>
       </Head>
       <h1>Login</h1>
-      {notify}
       <form onSubmit={handleLogin}>
         <p className="form-label">Email :</p>
         <input
