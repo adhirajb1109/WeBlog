@@ -7,7 +7,6 @@ const CreatePost = () => {
   const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
-
     fire.firestore().collection("blogs").add({
       title: title,
       content: content,
@@ -19,7 +18,6 @@ const CreatePost = () => {
   return (
     <div className="container">
       <h2 className="mt-3">Add Blog</h2>
-      {notification}
       <form onSubmit={handleSubmit}>
         <div>
           <p className="form-label">Title :</p>

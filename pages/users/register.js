@@ -23,7 +23,6 @@ const Register = () => {
         <title>WeBlog | Register</title>
       </Head>
       <h1>Register</h1>
-      {notification}
       <form onSubmit={handleLogin}>
         <p className="form-label">Email :</p>
         <input
