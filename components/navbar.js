@@ -40,37 +40,11 @@ export default function Navbar() {
                   <a className="nav-link active">Home</a>
                 </Link>
               </li>
-              {!user ? (
-                <>
-                  <li className="nav-item">
-                    <Link href="/users/register">
-                      <a className="nav-link active">Register</a>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="/users/login">
-                      <a className="nav-link active">Login</a>
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item">
-                    <Link href="/blog/add">
-                      <a className="nav-link active">Add Post</a>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      onClick={handleLogout}
-                      href="#"
-                      className="nav-link active"
-                    >
-                      Logout
-                    </a>
-                  </li>
-                </>
-              )}
+              <li className="nav-item">
+                <Link href="/blog/add">
+                  <a className="nav-link active">Add Post</a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

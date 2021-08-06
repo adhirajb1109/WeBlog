@@ -5,15 +5,6 @@ import { useEffect } from "react";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  const router = useRouter();
-  fire.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-  });
   const handleSubmit = (event) => {
     event.preventDefault();
     fire.firestore().collection("blogs").add({

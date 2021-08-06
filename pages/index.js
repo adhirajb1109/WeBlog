@@ -4,18 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const user = fire.auth().currentUser;
-  fire.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-  });
-  const handleLogout = () => {
-    fire.auth().signOut();
-  };
   useEffect(() => {
     fire
       .firestore()
