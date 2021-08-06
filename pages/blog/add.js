@@ -14,11 +14,6 @@ const CreatePost = () => {
       setLoggedIn(false);
     }
   });
-  useEffect(() => {
-    if (!loggedIn) {
-      router.push("/");
-    }
-  });
   const handleSubmit = (event) => {
     event.preventDefault();
     fire.firestore().collection("blogs").add({

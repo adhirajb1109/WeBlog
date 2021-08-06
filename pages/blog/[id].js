@@ -19,6 +19,9 @@ function Blog(props) {
           <h5 className="card-text lh-lg">{props.content}</h5>
         </div>
       </div>
+      <Link href={`/blog/edit/${props.id}`}>
+        <a className="btn btn-info me-3 mb-3">Edit</a>
+      </Link>
       <button className="btn btn-danger me-3 mb-3" onClick={handleDelete}>
         Delete
       </button>
