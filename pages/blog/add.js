@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  router = useRouter();
+  const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
     fire.firestore().collection("blogs").add({
