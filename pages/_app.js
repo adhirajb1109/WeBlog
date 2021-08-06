@@ -22,6 +22,10 @@ function MyApp({ Component, pageProps }) {
           href="https://i.ibb.co/hMCxkW1/blog-1.png"
           type="image/png"
         ></link>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        ></link>
       </Head>
       <Navbar />
       <Component {...pageProps} />

@@ -37,8 +37,9 @@ const CreatePost = () => {
             className="form-control"
           />
         </div>
-        <button type="submit" className="btn btn-dark my-3">
+        <button type="submit" className="btn btn-outline-dark my-3">
           Save
+          <i className="far fa-save ms-2"></i>
         </button>
       </form>
     </div>

@@ -20,13 +20,21 @@ function Blog(props) {
         </div>
       </div>
       <Link href={`/blog/edit/${props.id}`}>
-        <a className="btn btn-info me-3 mb-3">Edit</a>
+        <a className="btn btn-outline-info me-3 mb-3">
+          Edit <i className="fas fa-edit ms-2"></i>
+        </a>
       </Link>
-      <button className="btn btn-danger me-3 mb-3" onClick={handleDelete}>
+      <button
+        className="btn btn-outline-danger me-3 mb-3"
+        onClick={handleDelete}
+      >
         Delete
+        <i className="far fa-trash-alt ms-2"></i>
       </button>
       <Link href="/">
-        <a className="btn btn-dark mb-3">Back</a>
+        <a className="btn btn-outline-dark mb-3">
+          Back <i className="fas fa-arrow-circle-left ms-2"></i>
+        </a>
       </Link>
     </div>
   );
