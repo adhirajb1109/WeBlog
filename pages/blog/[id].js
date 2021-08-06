@@ -1,7 +1,13 @@
 import fire from "../../config/firebaseConfig";
 import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/router";
 function Blog(props) {
+  const router = useRouter();
+  function handleDelete() {
+    fire.firestore().collection("blogs").doc(props.id).delete();
+    router.push("/");
+  }
   return (
     <div className="container">
       <Head>
@@ -13,6 +19,9 @@ function Blog(props) {
           <h5 className="card-text lh-lg">{props.content}</h5>
         </div>
       </div>
+      <button className="btn btn-danger me-3 mb-3" onClick={handleDelete}>
+        Delete
+      </button>
       <Link href="/">
         <a className="btn btn-dark mb-3">Back</a>
       </Link>
@@ -32,6 +41,7 @@ export const getServerSideProps = async ({ query }) => {
     });
   return {
     props: {
+      id: query.id,
       title: content.title,
       content: content.content,
     },
