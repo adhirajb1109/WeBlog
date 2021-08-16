@@ -7,16 +7,29 @@ function Edit(props) {
   const router = useRouter();
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
-  const user = fire.auth().currentUser;
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [uid, setUid] = useState(null);
   useEffect(() => {
-    if (!user) {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setLoggedIn(true);
+        setUid(user.uid);
+      } else {
+        setLoggedIn(false);
+        setUid(null);
+      }
+    });
+  }, []);
+  useEffect(() => {
+    if (!loggedIn) {
       router.push("/users/login");
     } else {
-      if (props.author !== user.uid) {
+      if (props.author !== uid) {
         router.push("/");
       }
     }
   });
+
   const handleEdit = (e) => {
     e.preventDefault();
     fire
@@ -78,12 +91,14 @@ export const getServerSideProps = async ({ query }) => {
     .then((result) => {
       content["title"] = result.data().title;
       content["content"] = result.data().content;
+      content["author"] = result.data().author;
     });
   return {
     props: {
       id: query.id,
       title: content.title,
       content: content.content,
+      author: content.author,
     },
   };
 };

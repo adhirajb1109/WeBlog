@@ -7,12 +7,14 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const user = fire.auth().currentUser;
+  const [uid, setUid] = useState(null);
   fire.auth().onAuthStateChanged((user) => {
     if (user) {
       setLoggedIn(true);
+      setUid(user.uid);
     } else {
       setLoggedIn(false);
+      setUid(null);
     }
   });
   const router = useRouter();
@@ -21,7 +23,7 @@ const CreatePost = () => {
     fire.firestore().collection("blogs").add({
       title: title,
       content: content,
-      author: user.uid,
+      author: uid,
     });
     setTitle("");
     setContent("");

@@ -2,13 +2,27 @@ import fire from "../../config/firebaseConfig";
 import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 function Blog(props) {
-  const user = fire.auth().currentUser;
   const router = useRouter();
   function handleDelete() {
     fire.firestore().collection("blogs").doc(props.id).delete();
     router.push("/");
   }
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [uid, setUid] = useState(null);
+  useEffect(() => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setLoggedIn(true);
+        setUid(user.uid);
+      } else {
+        setLoggedIn(false);
+        setUid(null);
+      }
+    });
+  }, []);
+
   return (
     <div className="container">
       <Head>
@@ -20,7 +34,7 @@ function Blog(props) {
           <h5 className="card-text lh-lg">{props.content}</h5>
         </div>
       </div>
-      {user && props.author == user.uid ? (
+      {props.author !== uid && !loggedIn ? null : (
         <>
           <Link href={`/blog/edit/${props.id}`}>
             <a className="btn btn-outline-info me-3 mb-3">
@@ -35,7 +49,7 @@ function Blog(props) {
             <i className="far fa-trash-alt ms-2"></i>
           </button>
         </>
-      ) : null}
+      )}
       <Link href="/">
         <a className="btn btn-outline-dark mb-3">
           Back <i className="fas fa-arrow-circle-left ms-2"></i>
@@ -54,12 +68,14 @@ export const getServerSideProps = async ({ query }) => {
     .then((result) => {
       content["title"] = result.data().title;
       content["content"] = result.data().content;
+      content["author"] = result.data().author;
     });
   return {
     props: {
       id: query.id,
       title: content.title,
       content: content.content,
+      author: content.author,
     },
   };
 };
