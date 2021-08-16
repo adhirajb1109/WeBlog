@@ -3,6 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 function Blog(props) {
+  const user = fire.auth().currentUser;
   const router = useRouter();
   function handleDelete() {
     fire.firestore().collection("blogs").doc(props.id).delete();
@@ -19,18 +20,22 @@ function Blog(props) {
           <h5 className="card-text lh-lg">{props.content}</h5>
         </div>
       </div>
-      <Link href={`/blog/edit/${props.id}`}>
-        <a className="btn btn-outline-info me-3 mb-3">
-          Edit <i className="fas fa-edit ms-2"></i>
-        </a>
-      </Link>
-      <button
-        className="btn btn-outline-danger me-3 mb-3"
-        onClick={handleDelete}
-      >
-        Delete
-        <i className="far fa-trash-alt ms-2"></i>
-      </button>
+      {user && props.author == user.uid ? (
+        <>
+          <Link href={`/blog/edit/${props.id}`}>
+            <a className="btn btn-outline-info me-3 mb-3">
+              Edit <i className="fas fa-edit ms-2"></i>
+            </a>
+          </Link>
+          <button
+            className="btn btn-outline-danger me-3 mb-3"
+            onClick={handleDelete}
+          >
+            Delete
+            <i className="far fa-trash-alt ms-2"></i>
+          </button>
+        </>
+      ) : null}
       <Link href="/">
         <a className="btn btn-outline-dark mb-3">
           Back <i className="fas fa-arrow-circle-left ms-2"></i>

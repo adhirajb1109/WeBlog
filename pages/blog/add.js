@@ -6,17 +6,28 @@ import Head from "next/head";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const user = fire.auth().currentUser;
+  fire.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  });
   const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
     fire.firestore().collection("blogs").add({
       title: title,
       content: content,
+      author: user.uid,
     });
     setTitle("");
     setContent("");
     router.push("/");
   };
+
   return (
     <>
       <Head>

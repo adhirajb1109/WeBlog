@@ -2,11 +2,21 @@ import fire from "../../../config/firebaseConfig";
 import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function Edit(props) {
   const router = useRouter();
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
+  const user = fire.auth().currentUser;
+  useEffect(() => {
+    if (!user) {
+      router.push("/users/login");
+    } else {
+      if (props.author !== user.uid) {
+        router.push("/");
+      }
+    }
+  });
   const handleEdit = (e) => {
     e.preventDefault();
     fire
