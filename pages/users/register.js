@@ -69,7 +69,8 @@ function Register() {
             />
           </div>
           <button type="submit" className="btn btn-outline-dark">
-            Submit
+            Register
+            <i className="fas fa-sign-in-alt ms-2"></i>
           </button>
         </form>
       </div>

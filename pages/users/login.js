@@ -42,6 +42,7 @@ const Login = () => {
           />
           <button type="submit" className="btn btn-outline-dark">
             Login
+            <i className="fas fa-sign-in-alt ms-2"></i>
           </button>
         </form>
       </div>
