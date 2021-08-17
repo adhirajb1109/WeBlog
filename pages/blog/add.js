@@ -53,6 +53,7 @@ const CreatePost = () => {
               value={content}
               onChange={({ target }) => setContent(target.value)}
               className="form-control"
+              rows="7"
             />
           </div>
           <button type="submit" className="btn btn-outline-dark my-3">

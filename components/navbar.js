@@ -40,6 +40,8 @@ export default function Navbar() {
                   <a className="nav-link active">Home</a>
                 </Link>
               </li>
+            </ul>
+            <ul className="nav navbar-nav navbar-right">
               {!loggedIn ? (
                 <>
                   <li className="nav-item">
