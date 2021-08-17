@@ -7,26 +7,12 @@ function Edit(props) {
   const router = useRouter();
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [uid, setUid] = useState(null);
-  useEffect(() => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setLoggedIn(true);
-        setUid(user.uid);
-      } else {
-        setLoggedIn(false);
-        setUid(null);
-      }
-    });
-  }, []);
-  useEffect(() => {
-    if (!loggedIn) {
-      router.push("/users/login");
+  fire.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setUid(user.uid);
     } else {
-      if (props.author !== uid) {
-        router.push("/");
-      }
+      setUid(null);
     }
   });
 
